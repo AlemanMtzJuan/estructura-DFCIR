@@ -1,0 +1,107 @@
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import * as XLSX from "xlsx";
+
+const udaOptions = [
+  "INTRODUCCIÓN A LA CLÍNICA",
+  "TERAPÉUTICA MÉDICA",
+  "FISIOPATOLOGÍA MÉDICA",
+  "PSICOLOGÍA MÉDICA",
+  "GINECOLOGÍA Y OBSTETRICIA I",
+  "CLINOPATOLOGÍA DEL APARATO MÚSCULO ESQUELÉTICO",
+  "DERMATOLOGÍA",
+  "ALERGOLOGÍA",
+  "CLINOPATOLOGÍA DEL APARATO RESPIRATORIO",
+  "UROLOGÍA",
+  "INFECTOLOGÍA",
+  "CLINOPATOLOGÍA DEL APARATO DIGESTIVO",
+  "ANATOMÍAPATOLÓGICA ESPECIAL",
+  "ENDOCRINOLOGÍA",
+  "PEDIATRÍA",
+  "HEMATOLOGÍA",
+  "GINECOLOGÍA Y OBSTETRICIA II",
+  "OFTALMOLOGÍA",
+  "NEFROLOGÍA",
+  "CLINOPATOLOGÍA DEL APARATO CARDIOVASCULAR",
+  "PSIQUIATRÍA",
+  "NEUROLOGÍA",
+  "OTORRINOLARINGOLOGÍA",
+  "ONCOLOGÍA",
+  "GERIATRÍA"
+];
+
+const semestreOptions = [
+  "SEXTO",
+  "SÉPTIMO",
+  "OCTAVO",
+  "NOVENO",
+  "DÉCIMO"
+];
+
+const sedeOptions = [
+  "CENTRO DE SALUD CAMARONES",
+  "CENTRO GERONTOLOGICO MUNDET",
+  "CENTRO MÉDICO DALINDE",
+  "CLINICA DE ESP. Y CENTRO DE APOYO Y DX. LEONARDO Y NICOLAS BRAVO ISSSTE",
+  "CLINICA DE ESPECIALIDADES CHURUBUSCO",
+  "CLINICA DE ESPECIALIDADES TLATELOLCO",
+  "CLINICA HOSPITAL \"CHETUMAL\"",
+  "CORPORATIVO HOSPITAL SATÉLITE",
+  "GINECO Y OBSTETRICIA 3-A LA RAZA I.M.S.S.",
+  "HGZ NUM 47 IMSS VICENTE GUERRERO",
+  "C.M.N. 20 DE NOVIEMBRE",
+  "HOSPITAL ABC",
+  "HOSPITAL ADOLFO LOPEZ MATEOS",
+  "HOSPITAL ANGELES LINDAVISTA",
+  "HOSPITAL CENTRAL MILITAR",
+  "HOSPITAL CENTRAL NORTE PEMEX",
+  "HOSPITAL DARIO FERNANDEZ",
+  "HOSPITAL DE ALTA ESPECIALIDAD BELISARIO DOMINGUEZ",
+  "HOSPITAL DE ESPECIALIDADES MIG",
+  "HOSPITAL DE INFECTOLOGIA CENTRO MEDICO LA RAZA",
+  "HOSPITAL DE LA MUJER",
+  "C.M.N. SIGLO XXI",
+  "HOSPITAL DE ORTOPEDIA VICTORIO DE LA FUENTE NARVAES IMSS",
+  "HOSPITAL DE PEDIATRÍA CENTRO MÉDICO NACIONAL SIGLO XXI",
+  "HOSPITAL GENERAL DE MÉXICO DR. EDUARDO LICEAGA",
+  "INSTITUTO NACIONAL DE CANCEROLOGIA",
+  "INSTITUTO NACIONAL DE CIENCIAS MEDICAS Y NUTRICION \"SALVADOR ZUBIRAN\"",
+  "INSTITUTO NACIONAL DE ENFERMEDADES RESPIRATORIAS",
+  "INSTITUTO NACIONAL DE NEUROLOGIA Y NEUROCIRUGÍA",
+  "INSTITUTO NACIONAL DE PEDIATRIA",
+  "INSTITUTO NACIONAL DE REHABILITACION"
+];
+
+export default function DocentesForm() {
+  const [docentes, setDocentes] = useState([]);
+  const [formData, setFormData] = useState({
+    nombre: "",
+    curp: "",
+    horas: "",
+    contratacion: "",
+    tipo: "",
+    sede: "",
+    uda: "",
+    semestre: "",
+    trimestre1: "",
+    trimestre2: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="p-6">
+      <h2 className="text-xl font-bold mb-4">Captura de Datos Docentes</h2>
+      <div className="grid grid-cols-2 gap-4">
+        <select name="sede" value={formData.sede} onChange={handleChange} className="border p-2">
+          <option value="">Seleccione una Sede</option>
+          {sedeOptions.map((option, index) => (
+            <option key={index} value={option}>{option}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+}
